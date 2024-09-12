@@ -13,7 +13,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             async function fetchAndReplaceContent() {
                 try {
-                    let response = await fetch('partial.php');
+                    let response = await fetch('index.php');
                     if (!response.ok) throw new Error('Network response was not ok');
                     let html = await response.text();
 
