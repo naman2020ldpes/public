@@ -1,9 +1,20 @@
 
 <html>
 <body>
+    <script>
+        async function fetchPHPContent() {
+            try {
+                let response = await fetch('index.php');
+                if (!response.ok) throw new Error('Network response was not ok');
+                let text = await response.text();
+                document.getElementById('content').innerHTML = text;
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        }
 
-<h1>Welcome to my home page!</h1>
-
-<?php include 'index.php';?>
+        // Fetch the content when the page loads
+        fetchPHPContent();
+    </script>
 </body>
 </html>
