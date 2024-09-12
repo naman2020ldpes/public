@@ -1,20 +1,31 @@
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS blog</title>
+</head>
 <body>
-    <script>
-        async function fetchPHPContent() {
-            try {
-                let response = await fetch('index.php');
-                if (!response.ok) throw new Error('Network response was not ok');
-                let text = await response.text();
-                document.getElementById('content').innerHTML = text;
-            } catch (error) {
-                console.error('There was a problem with the fetch operation:', error);
-            }
-        }
+    <div id="content"></div>
 
-        // Fetch the content when the page loads
-        fetchPHPContent();
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            async function fetchAndReplaceContent() {
+                try {
+                    let response = await fetch('index.php');
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    let html = await response.text();
+                    
+                    // Inject fetched HTML into the content div
+                    document.getElementById('content').innerHTML = html;
+                } catch (error) {
+                    console.error('There was a problem with the fetch operation:', error);
+                }
+            }
+
+            // Fetch and replace content when the page loads
+            fetchAndReplaceContent();
+        });
     </script>
 </body>
 </html>
